@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bwm-colors';
+
+html, body {
+    height: 100%;
+}
+
+html, body,p {
+    color: $dark-gray-color;
+}
+
+.bwm-list-page {
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+}
+
+.type {
+    &-apartment {
+        color: #d68000;
+    }
+
+    &-condo {
+        color: #a72da3;
+        
+    }
+
+    &-house {
+        color: #bf1818;
+        
+    }
+}
