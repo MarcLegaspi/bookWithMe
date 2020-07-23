@@ -1,1 +1,57 @@
-<p>login works!</p>
+<section id="login">
+  <div class="bwm-form">
+    <div class="row">
+      <div class="col-md-5">
+        <h1>Login</h1>
+        <!-- <div *ngIf="notifyMessage" class="alert alert-success">
+            Some message
+          </div> -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"                    
+                   formControlName="email" 
+                   class="form-control" 
+                   id="email">
+            <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+              <div *ngIf="email.errors.required">
+                Email is required.
+              </div>
+              <div *ngIf="email.errors.pattern">
+                Email is invalid.
+              </div>
+              <div *ngIf="email.errors.forbiddenEmail">
+                  This email is not allowed
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" 
+                   formControlName="password" 
+                   class="form-control" 
+                   id="password">
+            <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors.minlength">
+                Password should not be less than 6 characters
+              </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="loginForm.errors?.sameAs && !password.pristine">
+              Password and email should match
+            </div>
+          </div>
+          <button type="submit" [disabled]="loginForm.invalid" class="btn bwm-btn-main">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-6 ml-auto">
+        <div class="image-container">
+          <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
+          <img src="assets/images/login-image.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

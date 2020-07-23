@@ -78,7 +78,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bwm-new-template:build"
+            "browserTarget": "bwm-new-template:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

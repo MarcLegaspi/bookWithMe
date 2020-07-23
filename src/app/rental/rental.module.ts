@@ -7,6 +7,7 @@ import { RentalComponent } from './rental.component';
 import { CommonModule } from '@angular/common';
 import { RentalService } from './shared/rental.service';
 import { RentalCardComponent } from '../shared/rental-card/rental-card.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UpperCasePipe } from '../shared/pipes/uppercase.pipe';
 
@@ -27,14 +28,15 @@ const routes: Routes = [
         RentalListingComponent,
         RentalComponent,
         RentalCardComponent,
-        UpperCasePipe
+        UpperCasePipe,
     ],
     providers: [
         RentalService
     ],
     imports: [
         RouterModule.forChild(routes),
-        CommonModule
+        CommonModule,
+        HttpClientModule
     ]
 })
 

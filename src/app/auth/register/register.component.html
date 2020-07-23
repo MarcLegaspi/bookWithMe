@@ -1,1 +1,95 @@
-<p>register works!</p>
+<section id="register">
+    <div class="bwm-form">
+        <div class="row">
+            <div class="col-md-5">
+                <h1 class="page-title">Register</h1>
+                <form (ngSubmit)="onSubmit(registerFormData)"                               
+                    [sameAs]="['password','passwordConfirmation']"  
+                    #registerForm="ngForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" required #username="ngModel" [(ngModel)]="registerFormData.username"
+                            name="username" class="form-control" id="username">
+                        <div class="alert alert-danger" *ngIf="username.invalid && username.touched">
+                            <div *ngIf="username.errors?.required">
+                                Username is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" required 
+                            [pattern]="emailPattern" 
+                            forbiddenEmail="marcericksonlegaspi@gmail.com"
+                            #email="ngModel" 
+                            [(ngModel)]="registerFormData.email" 
+                            name="email"
+                            class="form-control" id="email">
+                        <div class="alert alert-danger" *ngIf="email.invalid && email.touched">
+                            <div *ngIf="email.errors?.required">
+                                Email is required.
+                            </div>
+                            <div *ngIf="email.errors.pattern">
+                                Email is invalid.
+                            </div>
+                            <div *ngIf="email.errors.forbiddenEmail">
+                                This email is not allowed
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" required minlength="6" #password="ngModel" [(ngModel)]="registerFormData.password"
+                            name="password" class="form-control" id="password">
+                        <div class="alert alert-danger" *ngIf="password.invalid && password.touched">
+                            <div *ngIf="password.errors?.required">
+                                Password is required.
+                            </div>
+                            <div *ngIf="password.errors?.minlength">
+                                Password should not be less than 6 characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passwordConfirmation">Confirm Password</label>
+                        <input type="password" required minlength="6"           
+                            #passwordConfirmation="ngModel" 
+                            [(ngModel)]="registerFormData.passwordConfirmation"
+                            name="passwordConfirmation" 
+                            class="form-control" 
+                            id="passwordConfirmation">
+                        <div class="alert alert-danger" *ngIf="passwordConfirmation.invalid && passwordConfirmation.touched">
+                            <div *ngIf="passwordConfirmation.errors?.required">
+                                Password Confirmation is required.
+                            </div>
+                            <div *ngIf="passwordConfirmation.errors?.minlength">
+                                Password Confirmation should not be less than 6 characters
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-danger" *ngIf="registerForm.errors?.sameAs && !passwordConfirmation.pristine">
+                            Password should match Password confirmation
+                        </div>
+                    </div>
+                <button type="submit" 
+                        [disabled]="registerForm.invalid" 
+                        class="btn bwm-btn-main">Submit</button>
+                </form>
+                <!-- <div class="alert alert-danger">
+            <p *ngFor="let error of errors">
+              {{error.detail}}
+            </p>
+          </div> -->
+            </div>
+            <div class="col-md-6 ml-auto">
+                <div class="image-container">
+                    <h2 class="catchphrase">As our member you have access to most awesome places in the world.</h2>
+                    <img src="assets/images/register-image.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
